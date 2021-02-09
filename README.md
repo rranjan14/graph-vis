@@ -6,4 +6,4 @@
 ![alt text](https://github.com/rranjan14/graph-vis/blob/main/images/image1.png "Image 1")
 * For disconnected nodes the distance returned will be 10,000.
 * Please fill in all of the text boxes for creating graph as well as calculating distance between two specified nodes.
-### Click [here](https://www.google.com) to check it out.
+### Click [here](https://rranjan14.github.io/graph-vis/) to check it out.
