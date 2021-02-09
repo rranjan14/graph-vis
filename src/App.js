@@ -231,7 +231,7 @@ function App({ graph, graphActions }) {
             onClick={calculateDistance}
           >
             {" "}
-            Calculate Minimum Cost
+            Calculate Optimized Path
           </Button>
         </div>
         <div
