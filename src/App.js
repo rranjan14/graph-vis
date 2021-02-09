@@ -115,6 +115,7 @@ function App({ graph, graphActions }) {
       <span className="heading">Find Shortest Distance Between Two Nodes</span>
       <div className="container-div">
         <div className="left-container">
+          <Typography variant="h4">Create Graph</Typography>
           <form
             className={classes.root}
             noValidate
@@ -216,7 +217,7 @@ function App({ graph, graphActions }) {
             onClick={calculateDistance}
           >
             {" "}
-            Calculate Shortest Path
+            Calculate Minimum Cost
           </Button>
         </div>
         <div
