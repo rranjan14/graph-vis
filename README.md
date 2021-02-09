@@ -21,3 +21,4 @@
 * Clone the repository.
 * run `npm install` in the root of the project.
 * Install redux-dev-tools extension in **Google Chrome** browser from [here](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+* run `npm start` in the root of the project.
