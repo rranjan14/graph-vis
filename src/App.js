@@ -5,7 +5,7 @@ import * as graphActions from "./store/graphAction";
 import { TextField, Button, Typography } from "@material-ui/core/";
 import { makeStyles } from "@material-ui/core/styles";
 import "./App.css";
-import djiskstra from "./dijsktras";
+import dijkstras from "./dijkstras";
 import SnackBar from "./components/SnackBar";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +32,7 @@ function App({ graph, graphActions }) {
   const [toggleSnack, setToggleSnack] = useState(false);
   const [message, setMessage] = useState("");
   const [severity, setSeverity] = useState("");
+  const [path, setPath] = useState([]);
 
   const handleChange = (event) => {
     const { value, name } = event.target;
@@ -75,9 +76,15 @@ function App({ graph, graphActions }) {
       await setToggleSnack(true);
       return;
     }
-    const ans = await djiskstra(graph.nodes, graph.edgesAndCost, srcVertex);
-    setAnswer(ans[targetVertex][0]);
-    if (ans[targetVertex][0] >= 10000) {
+    const ans = await dijkstras(
+      graph.nodes,
+      graph.edgesAndCost,
+      srcVertex,
+      targetVertex
+    );
+    setAnswer(ans.distance);
+    setPath(ans.path);
+    if (ans.distance >= 10000) {
       await setMessage(
         "Please check the graph. Source and target might be disconnected"
       );
@@ -109,6 +116,13 @@ function App({ graph, graphActions }) {
   const close = () => {
     setToggleSnack(false);
   };
+  let showPath = "";
+  if (path) {
+    for (let index = 0; index < path.length; index++) {
+      showPath += path[index] + " -> ";
+    }
+    showPath = showPath.substring(0, showPath.length - 3);
+  }
 
   return (
     <div className="App">
@@ -225,10 +239,14 @@ function App({ graph, graphActions }) {
             display: "flex",
             flexDirection: "row",
             justifyContent: "center",
+            flexWrap: "wrap",
             width: "20%",
+            fontSize: "20px",
+            fontWeight: "bolder",
           }}
         >
           {answer}
+          {showPath ? `  || ${showPath}` : ""}
         </div>
       </div>
       <SnackBar
